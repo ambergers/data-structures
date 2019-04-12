@@ -30,9 +30,9 @@ def unique_houses(filename):
         return {item[2] for item in record_parsed if item[2]}
 
 
-print(unique_houses('cohort_data.txt'))
+#print(unique_houses('cohort_data.txt'))
 
-'''
+
 
 def sort_by_cohort(filename):
     """TODO: Return a list of all cohort lists, including ghosts but not instructors.
@@ -47,19 +47,21 @@ def sort_by_cohort(filename):
     >>> sort_by_cohort("cohort_data.txt")
     [['Harry Potter', 'Mandy Brocklehurst', 'Ron Weasley', 'Oliver Wood', 'Colin Creevey', 'Cho Chang', 'Michael Corner', 'Draco Malfoy', 'Seamus Finnigan', 'Eddie Carmichael', 'Theodore Nott', 'Terence Higgs', 'Hermione Granger', 'Penelope Clearwater', 'Angelina Johnson', 'Dennis Creevey'], ['Neville Longbottom', 'Cedric Diggory', 'Pansy Parkinson', 'Anthony Goldstein', 'Padma Patil', 'Luna Lovegood', 'Eleanor Branstone', 'Lee Jordan', 'Marietta Edgecombe', 'Andrew Kirke', 'Ginny Weasley', 'Mary Macdonald', 'Blaise Zabini', 'Natalie McDonald', 'Adrian Pucey', 'Hannah Abbott', 'Graham Pritchard', 'Susan Bones', 'Roger Davies', 'Owen Cauldwell'], ['Laura Madley', 'Orla Quirke', 'Parvati Patil', 'Eloise Midgeon', 'Zacharias Smith', 'Cormac McLaggen', 'Lisa Turpin', 'Demelza Robins', 'Ernie Macmillan', 'Millicent Bullstrode', 'Percy Weasley', 'Jimmy Peakes', 'Justin Finch-Fletchley', 'Miles Bletchley', 'Malcolm Baddock'], ['Marcus Belby', 'Euan Abercrombie', 'Vincent Crabbe', 'Ritchie Coote', 'Katie Bell', 'Terry Boot', 'Lavender Brown', 'Gregory Goyle', 'Marcus Flint', 'Dean Thomas', 'Jack Sloper', 'Rose Zeller', 'Stewart Ackerley', 'Fred Weasley', 'George Weasley', 'Romilda Vane', 'Alicia Spinnet', 'Kevin Whitby'], ['Friendly Friar', 'Grey Lady', 'Nearly Headless Nick', 'Bloody Baron']]
     """
-
-    all_students = []
-    winter_16 = []
-    spring_16 = []
-    summer_16 = []
-    fall_15 = []
-    ghosts = []
-
-    # Code goes here
-
-    return all_students
+    with open(filename) as school_file:
+        record_stripped = [record.strip() for record in school_file]
+        record_parsed = [record.split('|') for record in record_stripped]
+        all_students = [record for record in record_parsed if record[4] != 'I']
+        winter_16 = [record[0] + ' ' + record[1] for record in all_students if record[4] == 'Winter 2016']
+        spring_16 = [record[0] + ' ' + record[1] for record in all_students if record[4] == 'Spring 2016']
+        summer_16 = [record[0] + ' ' + record[1] for record in all_students if record[4] == 'Summer 2016']
+        fall_15 = [record[0] + ' ' + record[1] for record in all_students if record[4] == 'Fall 2015']
+        ghosts = [record[0] + ' ' + record[1] for record in all_students if record[4] == 'G']
 
 
+        return [fall_15, winter_16, spring_16, summer_16, ghosts]
+
+
+'''
 def hogwarts_by_house(filename):
     """TODO: Sort students into lists by house and return all lists in one list.
 
