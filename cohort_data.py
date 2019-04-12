@@ -118,7 +118,7 @@ def all_students_tuple_list(filename):
 
         return student_list
 
-'''
+
 def find_cohort_by_student_name(student_list):
     """TODO: Given full name, return student's cohort.
 
@@ -141,13 +141,18 @@ def find_cohort_by_student_name(student_list):
 
     # Code goes here
 
-    return "Student not found."
+    name = input("Who are you looking for? ")
+
+    for student in all_students:
+        if student[0] == name:
+            return f"{name} was in the {student[3]}."
+        return "Student not found."
 
 
 ##########################################################################################
 # Further Study Questions
 
-
+'''
 def find_name_duplicates(filename):
     """TODO: Return a set of student last names that have duplicates.
 
@@ -201,7 +206,7 @@ def find_house_members_by_student_name(student_list):
 #############################################################################
 # Here is some useful code to run these functions without doctests!
 
-# find_cohort_by_student_name(all_students_data)
+
 # find_house_members_by_student_name(all_students_data)
 
 
@@ -210,6 +215,8 @@ def find_house_members_by_student_name(student_list):
 #
 
 '''
+all_students = all_students_tuple_list('cohort_data.txt')
+print(find_cohort_by_student_name(all_students))
 
 if __name__ == "__main__":
     import doctest
