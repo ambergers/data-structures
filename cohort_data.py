@@ -61,7 +61,7 @@ def sort_by_cohort(filename):
         return [fall_15, winter_16, spring_16, summer_16, ghosts]
 
 
-'''
+
 def hogwarts_by_house(filename):
     """TODO: Sort students into lists by house and return all lists in one list.
 
@@ -75,19 +75,27 @@ def hogwarts_by_house(filename):
     [['Abbott', 'Chang', 'Creevey', 'Creevey', 'Edgecombe', 'Nott', 'Spinnet'], ['Abercrombie', 'Bell', 'Brown', 'Coote', 'Finnigan', 'Granger', 'Johnson', 'Jordan', 'Kirke', 'Longbottom', 'Macdonald', 'McDonald', 'McLaggen', 'Patil', 'Peakes', 'Potter', 'Robins', 'Sloper', 'Thomas', 'Vane', 'Weasley', 'Weasley', 'Weasley', 'Weasley', 'Weasley', 'Wood'], ['Bones', 'Branstone', 'Cauldwell', 'Diggory', 'Finch-Fletchley', 'Macmillan', 'Madley', 'Midgeon', 'Smith', 'Whitby', 'Zeller'], ['Ackerley', 'Belby', 'Boot', 'Brocklehurst', 'Carmichael', 'Clearwater', 'Corner', 'Davies', 'Goldstein', 'Lovegood', 'Patil', 'Quirke', 'Turpin'], ['Baddock', 'Bletchley', 'Bullstrode', 'Crabbe', 'Flint', 'Goyle', 'Higgs', 'Malfoy', 'Parkinson', 'Pritchard', 'Pucey', 'Zabini'], ['Baron', 'Friar', 'Lady', 'Nick'], ['Flitwick', 'McGonagall', 'Snape', 'Sprout']]
 
     """
+    with open(filename) as school_file:
+        record_stripped = [record.strip() for record in school_file]
+        all_hogwarts = [record.split('|') for record in record_stripped]
+        dumbledores_army = sorted([record[1] for record in all_hogwarts if record[2] == 'Dumbledore\'s Army'])
+        gryffindor = sorted([record[1] for record in all_hogwarts if record[2] == 'Gryffindor'])
+        hufflepuff = sorted([record[1] for record in all_hogwarts if record[2] == 'Hufflepuff'])
+        ravenclaw = sorted([record[1] for record in all_hogwarts if record[2] == 'Ravenclaw'])
+        slytherin = sorted([record[1] for record in all_hogwarts if record[2] == 'Slytherin'])
+        ghosts = sorted([record[1] for record in all_hogwarts if record[4] == 'G'])
+        instructors = sorted([record[1] for record in all_hogwarts if record[4] == 'I'])
 
-    all_hogwarts = []
-    dumbledores_army = []
-    gryffindor = []
-    hufflepuff = []
-    ravenclaw = []
-    slytherin = []
-    ghosts = []
-    instructors = []
+        # Code goes here
 
-    # Code goes here
+        return [dumbledores_army,
+                gryffindor,
+                hufflepuff,
+                ravenclaw,
+                slytherin,
+                ghosts,
+                instructors]
 
-    return all_hogwarts
 
 
 def all_students_tuple_list(filename):
@@ -109,7 +117,7 @@ def all_students_tuple_list(filename):
 
     return student_list
 
-
+'''
 def find_cohort_by_student_name(student_list):
     """TODO: Given full name, return student's cohort.
 
